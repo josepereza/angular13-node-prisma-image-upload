@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-3">
+  <div class="container-fluid">
+    <a class="navbar-brand" [routerLink]="'.'">Responsive navbar</a>
+
+    <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
+    <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
+      &#9776;
+    </button>
+
+    <!-- Step 2: Add the ngbCollapse directive to the element below. -->
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto ">
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/listado" routerLinkActive="active"
+            (click)="isMenuCollapsed = true">Listado</a>
+        </li>
+
+      </ul>
+      <ul class="navbar-nav ">
+          <li *ngIf="usuario" class="nav-item " style="color:aliceblue">
+            <a class="nav-link" (click)="isMenuCollapsed = true">Usuario :{{usuario}}</a>
+
+          </li>
+
+          <li *ngIf="!usuario" class="nav-item active ">
+            <!-- Step 4: Close the menu when a link is clicked. -->
+            <a class="nav-link" routerLink="/login" routerLinkActive="active" (click)="isMenuCollapsed = true">Login</a>
+          </li>
+          <li *ngIf="usuario" class="nav-item">
+            <a class="nav-link" style="cursor:pointer" (click)="isMenuCollapsed = true" (click)="logout()">logout</a>
+          </li>
+          <li *ngIf="!usuario" class="nav-item">
+            <a class="nav-link" routerLink="/signup" routerLinkActive="active"
+              (click)="isMenuCollapsed = true">singUp</a>
+          </li>
+       
+
+
+
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
